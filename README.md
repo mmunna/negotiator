@@ -50,17 +50,14 @@ Quick Start
             service is alive
 
 
-#### Examples:
+#### Examples of Getting client product price using Negotiator.:
 
 The following examples assume you have [jsonpp] (http://jmhodges.github.com/jsonpp/) or an equivalent (see Recommended
 Software below).  It is optional--jsonpp just formats the JSON responses to make them easier to read.
 
-####Get client product price using Negotiator.
-
 1. Provide clientUrl and categoryId as query parameter
 
    $ curl 'localhost:8080/price?clientUrl=http://example.com/app/v1&categoryId=1234' | jsonpp
-
    {
      "/products/1": "123.00",
      "/products/3": "134.00",
@@ -71,8 +68,8 @@ Software below).  It is optional--jsonpp just formats the JSON responses to make
 
 2. Send a bulk request for multiple clientUrl and categoryIds.
 
-   $ curl -XPOST -H "Content-Type: application/json" 'http://localhost:8080/price/batch' --data-binary '[{"clientUrl":"http://www.example1.com/app/v1","categoryId":"123"}, {"clientUrl":"http://www.example.com/v2","categoryId":"345"}]' | jsonpp
-
+   $ curl -XPOST -H "Content-Type: application/json" 'http://localhost:8080/price/batch' \
+     --data-binary '[{"clientUrl":"http://www.example1.com/app/v1","categoryId":"123"},{"clientUrl":"http://www.example.com/v2","categoryId":"345"}]' | jsonpp
    [
      {
        "clientUrl": "http://www.example.com/v2",
