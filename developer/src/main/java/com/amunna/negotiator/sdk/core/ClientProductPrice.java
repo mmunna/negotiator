@@ -21,6 +21,14 @@ public class ClientProductPrice {
         this.price = price;
     }
 
+    public String getClientUrl() {
+        return clientUrl;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
     public Map<String, String> getPrice() {
         return price;
     }
