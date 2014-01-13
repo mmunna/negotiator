@@ -39,7 +39,7 @@ Quick Start
         INFO  [2014-01-13 16:40:09,939] org.eclipse.jetty.server.AbstractConnector: Started SocketConnector@0.0.0.0:8081
         # Use Ctrl-C to kill the server when you are done.
 
-7.  Check that the server responds to requests (from another window):
+5.  Check that the server responds to requests (from another window):
 
         $ curl -s "http://localhost:8081/ping"
         pong
@@ -50,50 +50,50 @@ Quick Start
             service is alive
 
 
-#### Examples of Getting client product price using Negotiator.:
+### Examples of Getting client product price using Negotiator.:
 
 The following examples assume you have [jsonpp] (http://jmhodges.github.com/jsonpp/) or an equivalent (see Recommended
 Software below).  It is optional--jsonpp just formats the JSON responses to make them easier to read.
 
 1. Provide clientUrl and categoryId as query parameter
 
-   $ curl 'localhost:8080/price?clientUrl=http://example.com/app/v1&categoryId=1234' | jsonpp
-   {
-     "/products/1": "123.00",
-     "/products/3": "134.00",
-     "/products/2": "34.00",
-     "/products/5": "345.00",
-     "/products/4": "433.00"
-   }
+        $ curl 'localhost:8080/price?clientUrl=http://example.com/app/v1&categoryId=1234' | jsonpp
+        {
+            "/products/1": "123.00",
+            "/products/3": "134.00",
+            "/products/2": "34.00",
+            "/products/5": "345.00",
+            "/products/4": "433.00"
+        }
 
 2. Send a bulk request for multiple clientUrl and categoryIds.
 
-   $ curl -XPOST -H "Content-Type: application/json" 'http://localhost:8080/price/batch' \
-     --data-binary '[{"clientUrl":"http://www.example1.com/app/v1","categoryId":"123"},{"clientUrl":"http://www.example.com/v2","categoryId":"345"}]' | jsonpp
-   [
-     {
-       "clientUrl": "http://www.example.com/v2",
-       "categoryId": "345",
-       "price": {
-         "/products/1": "234.00",
-         "/products/3": "345.00",
-         "/products/2": "45.00",
-         "/products/5": "435.00",
-         "/products/4": "13.00"
-       }
-     },
-     {
-       "clientUrl": "http://www.example1.com/app/v1",
-       "categoryId": "123",
-       "price": {
-         "/products/1": "45.00",
-         "/products/3": "565.00",
-         "/products/2": "646.00",
-         "/products/5": "54.00",
-         "/products/4": "456.00"
-       }
-     }
-   ]
+        $ curl -XPOST -H "Content-Type: application/json" 'http://localhost:8080/price/batch' \
+            --data-binary '[{"clientUrl":"http://www.example1.com/app/v1","categoryId":"123"},{"clientUrl":"http://www.example.com/v2","categoryId":"345"}]' | jsonpp
+        [
+            {
+                "clientUrl": "http://www.example.com/v2",
+                "categoryId": "345",
+                "price": {
+                    "/products/1": "234.00",
+                    "/products/3": "345.00",
+                    "/products/2": "45.00",
+                    "/products/5": "435.00",
+                    "/products/4": "13.00"
+                }
+            },
+            {
+                "clientUrl": "http://www.example1.com/app/v1",
+                "categoryId": "123",
+                "price": {
+                    "/products/1": "45.00",
+                    "/products/3": "565.00",
+                    "/products/2": "646.00",
+                    "/products/5": "54.00",
+                    "/products/4": "456.00"
+                }
+            }
+        ]
 
 
 Recommended Software
