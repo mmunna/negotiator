@@ -12,7 +12,7 @@ Negotiator also has an api to process bulk request so that you can process a lar
 
 Documentation
 -------------
-* [Negotiator Client API] (https://github.com/bazaarvoice/doula/tree/master/docs/NegotiatorClientApi.md)
+* [Negotiator Client API] (https://github.com/mmunna/negotiator/tree/master/docs/NegotiatorClientApi.md)
 
 Quick Start
 -----------
