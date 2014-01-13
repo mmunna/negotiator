@@ -12,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-public class NegotiatorClient {
+public class NegotiatorClient implements Negotiator{
 
     private final Client jersey;
     private final UriBuilder baseUrl;
