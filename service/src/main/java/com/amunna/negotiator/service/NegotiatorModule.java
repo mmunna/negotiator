@@ -1,8 +1,8 @@
 package com.amunna.negotiator.service;
 
 import com.amunna.negotiator.service.config.NegotiatorConfiguration;
+import com.amunna.negotiator.service.datacollect.DataCollectClientManager;
 import com.amunna.negotiator.service.datacollect.DataCollector;
-import com.amunna.negotiator.service.datacollect.FakeDataCollectClientManager;
 import com.amunna.negotiator.service.datacollect.support.BoundedExecutor;
 import com.amunna.negotiator.service.datacollect.wiring.PriceCollectExecutor;
 import com.google.inject.Provides;
@@ -46,7 +46,7 @@ public class NegotiatorModule extends InstrumentationModule {
     protected void configure() {
         bind(Client.class).toInstance(defaultJerseyClient);
         bind(com.yammer.dropwizard.config.Environment.class).toInstance(dropwizardEnvironment);
-        bind(DataCollector.class).to(FakeDataCollectClientManager.class).asEagerSingleton();
+        bind(DataCollector.class).to(DataCollectClientManager.class).asEagerSingleton();
 
         bind(BoundedExecutor.class).annotatedWith(PriceCollectExecutor.class).toInstance(priceCollectExecutor);
     }

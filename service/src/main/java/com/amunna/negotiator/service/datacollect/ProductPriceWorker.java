@@ -37,6 +37,7 @@ public class ProductPriceWorker {
         concurClientList.addAll(targetClientList);
         final ConcurrentHashSet<ClientProductPrice> clientProductPriceSet = new ConcurrentHashSet<ClientProductPrice>();
         int numberOfClients = targetClientList.size();
+        long startTime = System.currentTimeMillis();
         for (int i = 0; i < numberOfClients; i++) {
             executor.submit(new Runnable() {
                 @Override
@@ -67,6 +68,9 @@ public class ProductPriceWorker {
         }
         while (modified.get() != numberOfClients) {
             Thread.sleep(5);
+            if (System.currentTimeMillis()-startTime > 30000) {
+                throw new RuntimeException("taking too long to process request");
+            }
         }
         return Lists.newArrayList(clientProductPriceSet);
     }

@@ -33,18 +33,6 @@ public final class ProductPriceManager {
     }
 
     public Map<String, String> getPriceForClientAndCategory(String clientUrl, String categoryId) throws Exception {
-        /*Map<String, String> productPrice = Maps.newHashMap();
-        CategoryResponse categoryResponse = dataCollector.getClient()
-                .getCategoryResponse(clientUrl, categoryId);
-        for(String productId : categoryResponse.getProducts()) {
-            ClientProduct clientProduct = new ClientProduct(clientUrl, categoryId, productId);
-            try {
-                productPrice.put(productId, productPriceCache.get(clientProduct));
-            } catch (Exception e) {
-                Throwables.propagate(e);
-            }
-        }
-        return productPrice;*/
         List<TargetClient> targetClientList = Lists.newArrayList(new TargetClient(clientUrl, categoryId));
         return getPriceForClientAndCategoryInBatch(targetClientList).get(0).getPrice();
     }
