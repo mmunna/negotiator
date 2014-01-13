@@ -24,7 +24,7 @@ import java.util.Map;
 
 @Path("/price")
 @Produces(MediaType.APPLICATION_JSON)
-public class NegotiatorResource {
+public final class NegotiatorResource {
     private static final Logger logger = LoggerFactory.getLogger(NegotiatorResource.class);
 
     @Inject ProductPriceManager productPriceManager;
