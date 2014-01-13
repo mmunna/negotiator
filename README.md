@@ -57,7 +57,7 @@ Software below).  It is optional--jsonpp just formats the JSON responses to make
 
 ####Get client product price using Negotiator.
 
-   ####Provide clientUrl and categoryId as query parameter
+1. Provide clientUrl and categoryId as query parameter
 
    $ curl 'localhost:8080/price?clientUrl=http://example.com/app/v1&categoryId=1234' | jsonpp
 
@@ -69,7 +69,7 @@ Software below).  It is optional--jsonpp just formats the JSON responses to make
      "/products/4": "433.00"
    }
 
-   #####Send a bulk request for multiple clientUrl and categoryIds.
+2. Send a bulk request for multiple clientUrl and categoryIds.
 
    $ curl -XPOST -H "Content-Type: application/json" 'http://localhost:8080/price/batch' --data-binary '[{"clientUrl":"http://www.example1.com/app/v1","categoryId":"123"}, {"clientUrl":"http://www.example.com/v2","categoryId":"345"}]' | jsonpp
 
