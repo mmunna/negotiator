@@ -14,10 +14,11 @@ import org.eclipse.jetty.util.ConcurrentHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProductPriceWorker {
 
-    private volatile int modified;
+    private AtomicInteger modified = new AtomicInteger();
     private final BoundedExecutor executor;
     private final DataCollector dataCollector;
 
@@ -59,12 +60,12 @@ public class ProductPriceWorker {
                         ClientProductPrice clientProductPrice = new ClientProductPrice(targetClient.getClientUrl(), targetClient.getCategoryId(), price);
                         clientProductPriceSet.add(clientProductPrice);
                     } finally {
-                        modified++;
+                        modified.incrementAndGet();
                     }
                 }
             });
         }
-        while (modified != numberOfClients) {
+        while (modified.get() != numberOfClients) {
             Thread.sleep(5);
         }
         return Lists.newArrayList(clientProductPriceSet);

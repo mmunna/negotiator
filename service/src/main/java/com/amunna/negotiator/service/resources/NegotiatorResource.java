@@ -34,7 +34,10 @@ public class NegotiatorResource {
     public Map<String, String> getPriceForCategory(@QueryParam("clientUrl") String clientUrl,
                                                    @QueryParam("categoryId") String categoryId) {
         Preconditions.checkNotNull(clientUrl, "Please provide clientUrl");
+        Preconditions.checkArgument(!isEmpty(clientUrl), "Please provide valid clientUrl");
         Preconditions.checkNotNull(categoryId, "Please provide categoryId");
+        Preconditions.checkArgument(!isEmpty(categoryId), "Please provide valid categoryId");
+
 
         Map<String, String> productPrice = Maps.newHashMap();
         try {
@@ -53,7 +56,9 @@ public class NegotiatorResource {
     public List<ClientProductPrice> getPriceForCategoryInBatch(List<TargetClient> targetClientList) {
         for(TargetClient targetClient : targetClientList) {
             Preconditions.checkNotNull(targetClient.getClientUrl(), "Please provide clientUrl");
+            Preconditions.checkArgument(!isEmpty(targetClient.getClientUrl()), "Please provide valid clientUrl");
             Preconditions.checkNotNull(targetClient.getCategoryId(), "Please provide categoryId");
+            Preconditions.checkArgument(!isEmpty(targetClient.getCategoryId()), "Please provide valid categoryId");
         }
         List<ClientProductPrice> productPrice = Lists.newArrayList();
         try {
@@ -62,6 +67,11 @@ public class NegotiatorResource {
             Throwables.propagate(e);
         }
         return productPrice;
+    }
+
+    private static boolean isEmpty(String str) {
+        str = str.trim();
+        return str.length() > 0 ? false : true;
     }
 
 }
