@@ -3,6 +3,7 @@ package com.amunna.negotiator.service.resources;
 import com.amunna.negotiator.sdk.core.ClientProductPrice;
 import com.amunna.negotiator.sdk.core.TargetClient;
 import com.amunna.negotiator.service.datacollect.ProductPriceManager;
+import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -32,6 +33,9 @@ public class NegotiatorResource {
     @Timed(group = "amunna.negotiator", type = "NegotiatorResource")
     public Map<String, String> getPriceForCategory(@QueryParam("clientUrl") String clientUrl,
                                                    @QueryParam("categoryId") String categoryId) {
+        Preconditions.checkNotNull(clientUrl, "Please provide clientUrl");
+        Preconditions.checkNotNull(categoryId, "Please provide categoryId");
+
         Map<String, String> productPrice = Maps.newHashMap();
         try {
             productPrice = productPriceManager.getPriceForClientAndCategory(clientUrl, categoryId);
@@ -47,6 +51,10 @@ public class NegotiatorResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Timed(group = "amunna.negotiator", type = "NegotiatorResource")
     public List<ClientProductPrice> getPriceForCategoryInBatch(List<TargetClient> targetClientList) {
+        for(TargetClient targetClient : targetClientList) {
+            Preconditions.checkNotNull(targetClient.getClientUrl(), "Please provide clientUrl");
+            Preconditions.checkNotNull(targetClient.getCategoryId(), "Please provide categoryId");
+        }
         List<ClientProductPrice> productPrice = Lists.newArrayList();
         try {
             productPrice = productPriceManager.getPriceForClientAndCategoryInBatch(targetClientList);
