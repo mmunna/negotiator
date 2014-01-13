@@ -1,8 +1,8 @@
 Negotiator
 ======
 
-As of now this application queries and manages client's product price information.
-In future it will be used to do more intelligent stuff like negotiating price, etc.
+As of now this application queries and manages clients' product price information.
+In future it will do more intelligent stuff like negotiating price, etc.
 
 Introduction
 ------------
@@ -12,7 +12,7 @@ Negotiator also has an api to process bulk request so that you can process a lar
 
 Documentation
 -------------
-* [Negotiator Client API] (https://github.com/bazaarvoice/doula/tree/master/docs/DoulaClientApi.md)
+* [Negotiator Client API] (https://github.com/bazaarvoice/doula/tree/master/docs/NegotiatorClientApi.md)
 
 Quick Start
 -----------
@@ -55,9 +55,9 @@ Quick Start
 The following examples assume you have [jsonpp] (http://jmhodges.github.com/jsonpp/) or an equivalent (see Recommended
 Software below).  It is optional--jsonpp just formats the JSON responses to make them easier to read.
 
-##Get client product price using Negotiator.
+####Get client product price using Negotiator.
 
-   ## Provide clientUrl and categoryId as query parameter
+   ####Provide clientUrl and categoryId as query parameter
 
    $ curl 'localhost:8080/price?clientUrl=http://example.com/app/v1&categoryId=1234' | jsonpp
 
@@ -69,7 +69,7 @@ Software below).  It is optional--jsonpp just formats the JSON responses to make
      "/products/4": "433.00"
    }
 
-   ## Send a bulk request for multiple clientUrl and categoryIds.
+   #####Send a bulk request for multiple clientUrl and categoryIds.
 
    $ curl -XPOST -H "Content-Type: application/json" 'http://localhost:8080/price/batch' --data-binary '[{"clientUrl":"http://www.example1.com/app/v1","categoryId":"123"}, {"clientUrl":"http://www.example.com/v2","categoryId":"345"}]' | jsonpp
 
