@@ -6,7 +6,7 @@ Negotiator exposes RESTful APIs. You can integrate Negotiator Java client in you
 Negotiator Client Library
 -------------------------
 
-Add the following to your Maven POM (set the `<version>` to the current version of Doula):
+Add the following to your Maven POM (set the `<version>` to the current version of Negotiator):
 
     <dependency>
         <groupId>com.amunna.negotiator</groupId>
